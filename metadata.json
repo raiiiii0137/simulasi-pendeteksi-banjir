@@ -1,0 +1,6 @@
+{
+  "name": "LoRa Flood Early Warning System (Peringatan Dini Banjir)",
+  "description": "Sistem peringatan dini banjir real-time berbasis IoT LoRa dan sensor ultrasonik untuk pemantauan akurat ketinggian air, laju arus, dan mitigasi bencana.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
