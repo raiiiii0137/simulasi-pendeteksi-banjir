@@ -1,5 +1,5 @@
 import React from 'react';
-import { Radio, AlertTriangle, Volume2, VolumeX, ShieldAlert, Sparkles, Video, ClipboardCheck } from 'lucide-react';
+import { Radio, AlertTriangle, Volume2, VolumeX, ShieldAlert, Sparkles, Video, ClipboardCheck, Github } from 'lucide-react';
 import { AlertLevel } from '../types/flood';
 
 interface HeaderNavProps {
@@ -9,6 +9,7 @@ interface HeaderNavProps {
   isSirenPlaying: boolean;
   onToggleSiren: () => void;
   onOpenMindMap: () => void;
+  onOpenGitHubModal: () => void;
 }
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({
@@ -18,6 +19,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   isSirenPlaying,
   onToggleSiren,
   onOpenMindMap,
+  onOpenGitHubModal,
 }) => {
   const getAlertColor = () => {
     switch (alertLevel) {
@@ -217,6 +219,16 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
           >
             <Sparkles className="h-3.5 w-3.5" />
             <span className="hidden md:inline">Bagan Mind Map</span>
+          </button>
+
+          {/* GitHub & Deploy Button */}
+          <button
+            onClick={onOpenGitHubModal}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-100 hover:bg-slate-800 transition-colors whitespace-nowrap shadow-sm shadow-slate-950/50"
+            title="Panduan Lengkap Ekspor & Deploy ke GitHub Pages"
+          >
+            <Github className="h-3.5 w-3.5 text-white" />
+            <span>GitHub Web</span>
           </button>
         </div>
       </div>

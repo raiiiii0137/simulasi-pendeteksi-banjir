@@ -22,7 +22,8 @@ import { DayeuhkolotFloodMap } from './components/DayeuhkolotFloodMap';
 import { CCTVMonitoringStation } from './components/CCTVMonitoringStation';
 import { MindMapModal } from './components/MindMapModal';
 import { PerformanceEvaluationSection } from './components/PerformanceEvaluationSection';
-import { ShieldAlert, AlertTriangle, Radio, Activity, Sparkles, BrainCircuit, MapPin, Video, CloudRain, ClipboardCheck } from 'lucide-react';
+import { GitHubDeployModal } from './components/GitHubDeployModal';
+import { ShieldAlert, AlertTriangle, Radio, Activity, Sparkles, BrainCircuit, MapPin, Video, CloudRain, ClipboardCheck, Github } from 'lucide-react';
 
 const INITIAL_STATIONS: SensorStation[] = [
   {
@@ -132,6 +133,7 @@ export default function App() {
   const [isAutoSimulating, setIsAutoSimulating] = useState<boolean>(true);
   const [isSirenPlaying, setIsSirenPlaying] = useState<boolean>(false);
   const [isMindMapOpen, setIsMindMapOpen] = useState<boolean>(false);
+  const [isGitHubModalOpen, setIsGitHubModalOpen] = useState<boolean>(false);
 
   const [physics, setPhysics] = useState<PhysicsParameters>({
     airTemperatureC: 25,
@@ -320,6 +322,7 @@ export default function App() {
         isSirenPlaying={isSirenPlaying}
         onToggleSiren={handleToggleSiren}
         onOpenMindMap={() => setIsMindMapOpen(true)}
+        onOpenGitHubModal={() => setIsGitHubModalOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -607,6 +610,12 @@ export default function App() {
         onNavigateTab={(tab) => setActiveTab(tab)}
       />
 
+      {/* GitHub Deployment & Export Modal */}
+      <GitHubDeployModal
+        isOpen={isGitHubModalOpen}
+        onClose={() => setIsGitHubModalOpen(false)}
+      />
+
       {/* Clean Domain Footer */}
       <footer className="border-t border-slate-900 bg-slate-950 py-6 mt-12 text-slate-500 text-xs">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
@@ -616,12 +625,20 @@ export default function App() {
             <span>Sistem Peringatan Dini Banjir Berbasis LoRa & Ultrasonik 40 kHz</span>
           </div>
 
-          <div className="flex items-center gap-4 text-[11px] font-mono">
-            <span>Sub-GHz 915 MHz</span>
+          <div className="flex items-center gap-4 text-[11px]">
+            <button
+              onClick={() => setIsGitHubModalOpen(true)}
+              className="flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
+            >
+              <Github className="h-3.5 w-3.5" />
+              <span>Panduan GitHub & Deploy Pages</span>
+            </button>
+            <span aria-hidden="true" className="text-slate-800">|</span>
+            <span className="font-mono text-slate-400">Sub-GHz 915 MHz</span>
             <span aria-hidden="true">·</span>
-            <span>Sensor: JSN-SR04T IP67</span>
+            <span className="font-mono text-slate-400">JSN-SR04T IP67</span>
             <span aria-hidden="true">·</span>
-            <span>ESP32 Telemetri</span>
+            <span className="font-mono text-slate-400">ESP32</span>
           </div>
         </div>
       </footer>
